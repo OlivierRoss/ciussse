@@ -2,6 +2,7 @@ body {
   margin: 0;
   text-align: center;
   font-family: 'Open Sans', sans-serif;
+  background-color: #F8EEE7;
 }
 
 a {
@@ -14,33 +15,38 @@ em {
 }
 
 h1, h2, h3 {
-  text-transform: uppercase;
+  font-family: 'Montserrat', sans-serif;
+  margin: 0;
 }
 
 header {
-  position: relative;
   height: 20vh;
-  background-color: #e1df45;
-  display: flex;
-  justify-content: center;
-  align-content: center;
+  background-color: #49274A;
+  padding: 0 5%;
 }
 
-#approche {
-  background-color: black;
+h1 {
+  color: white;
+  height: 100%;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+}
+
+#presentation {
+  background-color: #94618E;
   color: white;
   text-align: left;
-  padding: 75px 20%;
+  padding: 75px 5%;
 }
 
-#approche p {
+#presentation p {
   width: 50%;
 }
 
 #section-table {
   width: 90%;
   margin: 5% auto;
-  overflow-x: hidden;
 }
 
 footer {

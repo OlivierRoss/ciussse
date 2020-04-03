@@ -5,31 +5,27 @@
     <link rel="stylesheet" href="style.css" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans|Roboto&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&family=Open+Sans&display=swap" rel="stylesheet">
 
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-
-
-    <link href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css" rel="stylesheet">
-    <!--<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css" rel="stylesheet">-->
-    <!--<link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet">-->
-
-    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
-    <!--<script src="https://cdn.datatables.net/1.10.20/js/https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>-->
     <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.15/lodash.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/jq-3.3.1/dt-1.10.20/r-2.2.3/rg-1.1.1/datatables.min.css"/>
+    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/jq-3.3.1/dt-1.10.20/r-2.2.3/rg-1.1.1/datatables.min.js"></script>
   </head>
   <body>
     <header>
-      <h1>COVID-19</h1>
+      <h1>Répertoire des services communautaires actifs de Sherbrooke</h1>
     </header>
-    <section id="approche">
-      <p> Texte de presentation </p>
+    <section id="presentation">
+      <h2>Présentation de l'outil</h2>
+      <p>Ce répertoire se veut une liste aussi à jour que possible de tous les services communautaires qui sont disponibles sur le territoire de Sherbrooke.</p>
+      <p>Pour obtenir plus d'information sur un organisme, appuyez simplement sur le nom de l'organisme et vous obtiendrez tous les renseignements nécessaires.</p>
     </section>
     <section id="section-table">
       <table id="table"> </table>
     </section>
     <footer>
-      <p>Cet outil est une initiative du CIUSSSE</p>
+      <p>Cet outil est une initiative du CIUSSSE, de la CDC - Sherbrooke et du ROC</p>
     </footer>
     <script type="text/javascript">
 
@@ -45,12 +41,21 @@
           let secteurs = _.map(organismes, (organisme) => {
             return organisme[0];
           });
-          console.log(secteurs);
 
           // Creer plusieurs tables
+          /*_.each(secteurs, (secteur) => {
+            var titre = document.createElement('h2');
+            titre.innerHTML = secteur;
+            document.getElementById("section-table").appendChild(titre);
+
+            var table = document.createElement('table');
+            table.id = 'table-' + secteur.toLocaleLowerCase();
+            document.getElementById("section-table").appendChild(table);
+          });*/
 
           // Ajouter les donnees pour chaque table
-          $('#table').DataTable( {
+          $('#table').DataTable({
+            responsive: true,
             paging: false,
             data: organismes,
             columns: json.values.slice(0, 1)[0].map((col) => { return {title: col} }),
@@ -59,6 +64,16 @@
                 "targets": [0],
                 "visible": false,
                 "searchable": false
+              },
+              {
+                "targets": [1],
+                //"width": '25%',
+                responsivePriority: 1
+              },
+              {
+                "targets": [2],
+                //"width": '65%',
+                responsivePriority: 2
               }
             ],
             language: {
