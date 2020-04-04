@@ -64,37 +64,13 @@ footer {
     height: 100vh;
   }
 
-  #approche p {
-    width: 100%;
+  #presentation h2 {
+    text-align: center;
   }
 
-  .barre {
-    margin: 10px 0;
-    display: block;
-  }
-
-  #menu-gauche {
-    flex-direction: column;
-    width: 70%;
-  }
-
-  #info-contact {
-    margin-top: 15px;
-    border-top: 2px solid white;
-    padding-top: 15px;
-  }
-
-  #projets .contenu {
-    margin: 0;
-    width: 100%;
-    padding: 1% 0;
-  }
-
-  .coin-droit, .coin-gauche {
-    display: none;
-  }
-
-  #cliniques {
-    width: 100%;
+  #presentation p {
+    text-align: justify;
+    width: 80%;
+    margin: 10px auto;
   }
 }
