@@ -12,7 +12,15 @@ window.onload = async function () {
 
 function ajouter_donnees_DOM (json) {
   let organismes = json.values.slice(1);
+  let colonnes = json.values.slice(0, 1)[0].map((col) => { return {title: col} });
   let table = document.getElementById("table");
+
+  // Ajustement des types de donnees
+  _.each(organismes, (organisme) => {
+    while(organisme.length < colonnes.length) {
+      organisme.push("");
+    }
+  });
 
   // Creer entete
   /*let thead = document.createElement("thead");
@@ -49,7 +57,7 @@ function ajouter_donnees_DOM (json) {
 
   // Initialisation de Datatables
   let groupColumn = 0;
-  let colonnes = json.values.slice(0, 1)[0].map((col) => { return {title: col} });
+  
   $('#table').DataTable({
     responsive: true,
     data: organismes,
