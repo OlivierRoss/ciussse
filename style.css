@@ -50,6 +50,9 @@ h1, h3 {
   margin: 5% auto;
 }
 
+tr {
+}
+
 tr.group {
   text-align: left;
   background-color: #94618e !important;
@@ -90,9 +93,23 @@ footer {
     text-align: center;
   }
 
-  #presentation p {
+  p {
     text-align: justify;
     width: 80%;
     margin: 10px auto;
+  }
+
+  #section-table {
+    display: none;
+  }
+
+  #erreur-mobile {
+    display: block !important;
+    background-color: white;
+    color: #49274A;
+  }
+
+  #erreur-mobile p {
+    text-align: center;
   }
 }
