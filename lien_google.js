@@ -15,7 +15,7 @@ function ajouter_donnees_DOM (json) {
   let table = document.getElementById("table");
 
   // Creer entete
-  let thead = document.createElement("thead");
+  /*let thead = document.createElement("thead");
 
   _.each(json.values.slice(0, 1), (colonne) => {
     let tr = document.createElement("tr");
@@ -45,14 +45,15 @@ function ajouter_donnees_DOM (json) {
   });
 
   table.appendChild(thead);
-  table.appendChild(tbody);
+  table.appendChild(tbody);*/
 
   // Initialisation de Datatables
   let groupColumn = 0;
+  let colonnes = json.values.slice(0, 1)[0].map((col) => { return {title: col} });
   $('#table').DataTable({
     responsive: true,
-    //data: organismes,
-    //columns: json.values.slice(0, 1)[0].map((col) => { return {title: col} }),
+    data: organismes,
+    columns: colonnes,
     paging: false,
     "columnDefs": [
       {
@@ -80,7 +81,7 @@ function ajouter_donnees_DOM (json) {
       api.column(groupColumn, {page:'current'} ).data().each( function ( group, i  ) {
         if ( last !== group  ) {
           $(rows).eq( i  ).before(
-            '<tr class="group"><td colspan="5">'+group+'</td></tr>'
+            '<tr class="group"><td colspan="' + (colonnes.length - 2) + '">'+group+'</td></tr>'
           );
           last = group;
         }

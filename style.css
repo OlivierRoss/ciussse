@@ -50,11 +50,16 @@ h1, h3 {
   margin: 5% auto;
 }
 
+thead {
+  background-color: #49274A;
+  color: white;
+}
+
 tr {
 }
 
 tr.group {
-  text-align: left;
+  text-align: center;
   background-color: #94618e !important;
   color: white;
   text-transform: uppercase;
