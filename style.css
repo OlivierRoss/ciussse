@@ -17,6 +17,7 @@ em {
 h1, h2, h3 {
   font-family: 'Montserrat', sans-serif;
   margin: 0;
+  width: 100%;
 }
 
 header {
@@ -33,14 +34,14 @@ h1, h3 {
   color: white;
 }
 
-#presentation {
+.section-texte {
   background-color: #94618E;
   color: white;
   text-align: left;
   padding: 75px 5%;
 }
 
-#presentation p {
+#section-texte p {
   width: 50%;
 }
 
@@ -64,18 +65,19 @@ tr.group {
   margin: 5% 0;
 }
 
-#section-table p a {
+p a {
   color: white;
   text-decoration: underline;
 }
 
 footer {
-  height: 10vh;
+  min-height: 10vh;
   background-color: black; 
   color: white;
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 3% 5%;
 }
 
 @media only screen and (max-width: 600px) {

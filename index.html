@@ -4,116 +4,34 @@
     <title>Disponibilités des organismes communautaires</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&family=Open+Sans&display=swap" rel="stylesheet">
 
     <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.15/lodash.min.js"></script>
+    <script type="text/javascript" src="datatables.min.js"></script>
+    <script type="text/javascript" src="lien_google.js"></script>
 
-    <!--<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/jq-3.3.1/dt-1.10.20/r-2.2.3/rg-1.1.1/datatables.min.css"/>-->
     <link rel="stylesheet" type="text/css" href="datatables.min.css"/>
     <link rel="stylesheet" href="style.css" />
-    <script type="text/javascript" src="datatables.min.js"></script>
-    <!--<script type="text/javascript" src="https://cdn.datatables.net/v/dt/jq-3.3.1/dt-1.10.20/r-2.2.3/rg-1.1.1/datatables.min.js"></script>-->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&family=Open+Sans&display=swap" rel="stylesheet">
+
   </head>
   <body>
     <header>
       <h1>COVID-19</h1>
       <h3>État des services des organismes de Sherbrooke durant la pandémie</h3>
     </header>
-    <section id="presentation">
+    <section id="presentation" class="section-texte">
       <h2>Présentation de l'outil</h2>
       <p>Ce répertoire se veut une liste aussi à jour que possible de tous les services communautaires qui sont disponibles sur le territoire de Sherbrooke.</p>
     </section>
     <section id="section-table">
       <table id="table"> </table>
+    </section>
+    <section id="presentation" class="section-texte">
       <p>Si les informations concernant votre organisme ne sont pas à jour, veuillez répondre au sondage hebdomadaire de la CDC créé à cet effet, ou écrire à <a href="mailto:action.concertee.sherbrooke@gmail.com">action.concertee.sherbrooke@gmail.com</a></p>
     </section>
     <footer>
       <p>Cet outil est possible grâce à la Corporation de développement communautaire (CDC) de Sherbrooke, en collaboration avec l’Initiative Sherbrookoise en développement des communautés (ISDC) et le CIUSSS de l’Estrie-CHUS.</p>
     </footer>
-    <script type="text/javascript">
-
-      window.onload = async function () {
-        let response = await fetch("https://sheets.googleapis.com/v4/spreadsheets/1inmEtfz_sZeA1bI6n2y581WnwOm44B-KTAxhacw2vJY/values/'IGNORER - Données publiques'!A:H?key=AIzaSyAl3TfynOtVS2PQRKyJPWxJShQdESCvsy4");
-
-        if (response.ok) { // if HTTP-status is 200-299
-          // get the response body (the method explained below)
-          let json = await response.json();
-          let organismes = json.values.slice(1);
-
-          // Ajouter les donnees pour chaque table
-          let groupColumn = 0;
-          $('#table').DataTable({
-            responsive: true,
-            paging: false,
-            data: organismes,
-            columns: json.values.slice(0, 1)[0].map((col) => { return {title: col} }),
-            "columnDefs": [
-              {
-                "targets": [0],
-                "visible": false,
-                "searchable": false
-              },
-              {
-                "targets": [1],
-                //"width": '25%',
-                responsivePriority: 1
-              },
-              {
-                "targets": [2],
-                //"width": '65%',
-                responsivePriority: 2
-              }
-            ],
-            "order": [[ groupColumn, 'asc'  ]],
-            "drawCallback": function ( settings  ) {
-              var api = this.api();
-              var rows = api.rows( {page:'current'}  ).nodes();
-              var last=null;
-
-              api.column(groupColumn, {page:'current'} ).data().each( function ( group, i  ) {
-                if ( last !== group  ) {
-                  $(rows).eq( i  ).before(
-                    '<tr class="group"><td colspan="5">'+group+'</td></tr>'
-                  );
-                  last = group;
-                }
-              });
-            },
-            language: {
-              "sEmptyTable":     "Aucune donnée disponible dans le tableau",
-              "sInfo":           "Affichage de l'élément _START_ à _END_ sur _TOTAL_ éléments",
-              "sInfoEmpty":      "Affichage de l'élément 0 à 0 sur 0 élément",
-              "sInfoFiltered":   "(filtré à partir de _MAX_ éléments au total)",
-              "sInfoPostFix":    "",
-              "sInfoThousands":  ",",
-              "sLengthMenu":     "Afficher _MENU_ éléments",
-              "sLoadingRecords": "Chargement...",
-              "sProcessing":     "Traitement...",
-              "sSearch":         "Rechercher :",
-              "sZeroRecords":    "Aucun élément correspondant trouvé",
-              "oPaginate": {
-                "sFirst":    "Premier",
-                "sLast":     "Dernier",
-                "sNext":     "Suivant",
-                "sPrevious": "Précédent"
-              },
-              "oAria": {
-                "sSortAscending":  ": activer pour trier la colonne par ordre croissant",
-                "sSortDescending": ": activer pour trier la colonne par ordre décroissant"
-              },
-              "select": {
-                "rows": {
-                  "_": "%d lignes sélectionnées",
-                  "0": "Aucune ligne sélectionnée",
-                  "1": "1 ligne sélectionnée"
-                }
-              }
-            }
-        });
-      } else {
-        alert("HTTP-Error: " + response.status);
-      }
-    }
-  </script>
+    
   </body>
 </html>
