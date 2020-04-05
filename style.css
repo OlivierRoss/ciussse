@@ -20,17 +20,17 @@ h1, h2, h3 {
 }
 
 header {
-  height: 20vh;
+  height: 25vh;
   background-color: #49274A;
   padding: 0 5%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
 }
 
-h1 {
+h1, h3 {
   color: white;
-  height: 100%;
-  display: flex;
-  justify-content: left;
-  align-items: center;
 }
 
 #presentation {
@@ -55,6 +55,18 @@ tr.group {
   color: white;
   text-transform: uppercase;
   font-weight: bold;
+}
+
+#section-table p {
+  background-color: #49274a;
+  color: white;
+  padding: 3%;
+  margin: 5% 0;
+}
+
+#section-table p a {
+  color: white;
+  text-decoration: underline;
 }
 
 footer {

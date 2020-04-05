@@ -16,18 +16,19 @@
   </head>
   <body>
     <header>
-      <h1>Répertoire des services communautaires actifs de Sherbrooke</h1>
+      <h1>COVID-19</h1>
+      <h3>État des services des organismes de Sherbrooke durant la pandémie</h3>
     </header>
     <section id="presentation">
       <h2>Présentation de l'outil</h2>
       <p>Ce répertoire se veut une liste aussi à jour que possible de tous les services communautaires qui sont disponibles sur le territoire de Sherbrooke.</p>
-      <p>Pour obtenir plus d'information sur un organisme, appuyez simplement sur le nom de l'organisme et vous obtiendrez tous les renseignements nécessaires.</p>
     </section>
     <section id="section-table">
       <table id="table"> </table>
+      <p>Si les informations concernant votre organisme ne sont pas à jour, veuillez répondre au sondage hebdomadaire de la CDC créé à cet effet, ou écrire à <a href="mailto:action.concertee.sherbrooke@gmail.com">action.concertee.sherbrooke@gmail.com</a></p>
     </section>
     <footer>
-      <p>Cet outil est une initiative du CIUSSSE, de la CDC - Sherbrooke et du ROC</p>
+      <p>Cet outil est possible gr0ce à la Corporation de développement communautaire (CDC) de Sherbrooke, en collaboration avec l’Initiative Sherbrookoise en développement des communautés (ISDC) et le CIUSSS de l’Estrie-CHUS.</p>
     </footer>
     <script type="text/javascript">
 
@@ -38,22 +39,6 @@
           // get the response body (the method explained below)
           let json = await response.json();
           let organismes = json.values.slice(1);
-
-          // Trouver tous les secteurs
-          let secteurs = _.map(organismes, (organisme) => {
-            return organisme[0];
-          });
-
-          // Creer plusieurs tables
-          /*_.each(secteurs, (secteur) => {
-            var titre = document.createElement('h2');
-            titre.innerHTML = secteur;
-            document.getElementById("section-table").appendChild(titre);
-
-            var table = document.createElement('table');
-            table.id = 'table-' + secteur.toLocaleLowerCase();
-            document.getElementById("section-table").appendChild(table);
-          });*/
 
           // Ajouter les donnees pour chaque table
           let groupColumn = 0;
