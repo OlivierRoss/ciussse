@@ -59,6 +59,7 @@ td:first-child::before {
   top: calc(50% - 9px) !important;
   box-shadow: none !important;
   background-color: #49274A !important;
+  padding: 2px !important;
 }
 
 tr a {
