@@ -6,7 +6,7 @@ body {
 }
 
 a {
-  text-decoration: none;
+  text-decoration: underline;
 }
 
 em {
@@ -55,7 +55,14 @@ thead {
   color: white;
 }
 
-tr {
+td:first-child::before {
+  top: calc(50% - 9px) !important;
+  box-shadow: none !important;
+  background-color: #49274A !important;
+}
+
+tr a {
+  color: black;
 }
 
 tr.group {
