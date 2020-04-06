@@ -60,6 +60,7 @@ td:first-child::before {
   box-shadow: none !important;
   background-color: #49274A !important;
   padding: 2px !important;
+  font-weight: bold !important;
 }
 
 tr a {
