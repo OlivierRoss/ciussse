@@ -48,6 +48,11 @@ h1, h3 {
 #section-table {
   width: 90%;
   margin: 5% auto;
+  overflow-x: auto;
+}
+
+.dataTables_filter {
+  margin-bottom: 10px;
 }
 
 thead {
