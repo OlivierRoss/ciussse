@@ -84,6 +84,11 @@ tr.group {
   max-width: 100%;
 }
 
+table.dataTable > tbody > tr.child ul.dtr-details > li {
+  display: flex;
+  justify-content: space-between;
+}
+
 #section-table p {
   background-color: #49274a;
   color: white;
