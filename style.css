@@ -84,6 +84,10 @@ tr.group {
   max-width: 100%;
 }
 
+table.dataTable > tbody > tr.child ul.dtr-details {
+  width: 90%;
+}
+
 table.dataTable > tbody > tr.child ul.dtr-details > li {
   display: flex;
   justify-content: space-between;
@@ -128,6 +132,10 @@ footer {
   }
 
   #section-table {
+    width: 100%;
+  }
+
+  table.dataTable > tbody > tr.child ul.dtr-details {
     width: 100%;
   }
 }

@@ -85,12 +85,10 @@ function ajouter_donnees_DOM (json) {
       },
       {
         "targets": [1],
-        //"width": '25%',
         responsivePriority: 1
       },
       {
         "targets": [2],
-        //"width": '65%',
         responsivePriority: 2
       }
     ],
