@@ -80,6 +80,10 @@ tr.group {
   font-weight: bold;
 }
 
+#table {
+  max-width: 100%;
+}
+
 #section-table p {
   background-color: #49274a;
   color: white;
