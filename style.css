@@ -123,16 +123,6 @@ footer {
   }
 
   #section-table {
-    display: none;
-  }
-
-  #erreur-mobile {
-    display: block !important;
-    background-color: white;
-    color: #49274A;
-  }
-
-  #erreur-mobile p {
-    text-align: center;
+    width: 100%;
   }
 }
