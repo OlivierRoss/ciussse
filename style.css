@@ -103,7 +103,7 @@ table.dataTable > tbody > tr.child span.dtr-data {
   padding-right: 5px;
   text-align: right;
   width: 65%;
-  overflow-wrap: anywhere;
+  overflow-wrap: break-word;
 }
 
 table.dataTable tbody th, table.dataTable tbody td {
