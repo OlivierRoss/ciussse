@@ -158,6 +158,7 @@ footer {
     text-align: justify;
     width: 80%;
     margin: 10px auto;
+    overflow-wrap: break-word;
   }
 
   #section-table {
