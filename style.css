@@ -118,6 +118,7 @@ table.dataTable > tbody > tr.child ul.dtr-details {
 table.dataTable > tbody > tr.child ul.dtr-details > li {
   display: flex;
   justify-content: space-between;
+  border-bottom: 2px solid #cfcfcf;
 }
 
 #section-table p {
