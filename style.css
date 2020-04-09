@@ -134,7 +134,7 @@ table.dataTable > tbody > tr.child ul.dtr-details > li {
   margin: 5% 0;
 }
 
-#table .even {
+#table .even, .even.parent + .child {
   background-color: #f8eee7;
 }
 
