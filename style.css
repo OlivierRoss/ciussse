@@ -86,6 +86,7 @@ tr.group {
 
 #table {
   max-width: 100%;
+  width: initial;
 }
 
 table.dataTable > tbody > tr.child {
