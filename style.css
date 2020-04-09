@@ -85,7 +85,7 @@ tr.group {
 }
 
 tr.group td {
-  padding-left: 5%;
+  padding-left: 5% !important;
 }
 
 #table {
