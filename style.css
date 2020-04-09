@@ -77,11 +77,15 @@ tr a {
 }
 
 tr.group {
-  text-align: center;
+  text-align: left;
   background-color: #94618e !important;
   color: white;
   text-transform: uppercase;
   font-weight: bold;
+}
+
+tr.group td {
+  padding-left: 5%;
 }
 
 #table {
@@ -128,6 +132,10 @@ table.dataTable > tbody > tr.child ul.dtr-details > li {
   color: white;
   padding: 3%;
   margin: 5% 0;
+}
+
+#table .even {
+  background-color: #f8eee7;
 }
 
 p a {
