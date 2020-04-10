@@ -51,6 +51,10 @@ h1, h3 {
   overflow-x: auto;
 }
 
+#table {
+  text-align: left;
+}
+
 .dataTables_filter {
   margin-bottom: 10px;
 }
@@ -85,7 +89,15 @@ tr.group {
 }
 
 tr.group td {
-  padding-left: 5% !important;
+  padding-left: 18px !important;
+}
+
+table.dataTable thead td {
+  padding-left: 0;
+}
+
+table.dataTable thead td:first-of-type {
+  padding-left: 18px;
 }
 
 #table {
