@@ -80,6 +80,7 @@ table {
   text-align: left;
   width: 100% !important;
   border-collapse: collapse;
+  display: none;
 }
 
 td:first-of-type {

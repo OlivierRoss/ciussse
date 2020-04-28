@@ -8,8 +8,6 @@ window.onload = async function () {
   if (response.ok) { // if HTTP-status is 200-299
     ajouter_donnees_DOM(await response.json());
 
-    // Afficher les informations cachees en mode mobile
-    $("tbody tr").click(() => { })
   } else {
     alert("HTTP-Error: " + response.status);
   }
@@ -39,6 +37,7 @@ function ajouter_donnees_DOM (json) {
     // Creer entete
     let entete = document.createElement("h3");
     entete.innerHTML = key;
+    entete.onclick = afficher_categorie;
 
     let thead = document.createElement("thead");
     let tr = document.createElement("tr");
@@ -57,7 +56,7 @@ function ajouter_donnees_DOM (json) {
       _.each(organisme, (val) => {
 
         let courriel, site, tel, fb;
-        
+
         // Courriels
         if(courriel = val.match(email_regexp)) {
           let a = document.createElement("a");
@@ -100,4 +99,9 @@ function ajouter_donnees_DOM (json) {
     document.getElementById("section-table").appendChild(entete);
     document.getElementById("section-table").appendChild(table);
   });
+}
+
+function afficher_categorie (ev) {
+  $("table").css("display", "none");
+  $(ev.target).next().css("display", "table");
 }
