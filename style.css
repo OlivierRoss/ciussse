@@ -49,7 +49,8 @@ header h3 {
   color: white;
 
   background-color: #f26754;
-  padding-bottom: 20px;
+  padding: 20px;
+  padding-top: 0;
 
   font-size: 1.5em;
 }
@@ -67,8 +68,7 @@ header h3 {
 
 #section-table {
   width: 90%;
-  margin: 5% auto;
-  overflow-x: auto;
+  margin: 0 auto;
 }
 
 #section-table h3 {
@@ -90,24 +90,31 @@ td:first-of-type {
 
 td:nth-of-type(2) {
   width: 200px;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.85em;
 }
 
 td:nth-of-type(3) {
   width: 75px;
 }
 
-td {
+tr {
   border-bottom: 1px solid black;
+}
+
+tbody tr:last-of-type {
+  border: none;
+}
+
+td {
   padding: 5px;
   word-break: break-word;
 }
 
 .icone {
   width: 35px;
-}
-
-tbody tr:last-of-type td {
-  border: none;
 }
 
 tr a {
@@ -129,14 +136,10 @@ footer {
   padding: 3% 5%;
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 700px) {
 
-  header {
-    height: 100vh;
-  }
-
-  #presentation h2 {
-    text-align: center;
+  header h1 {
+    font-size: 2em;
   }
 
   p {
@@ -150,7 +153,17 @@ footer {
     width: 100%;
   }
 
-  table.dataTable > tbody > tr.child ul.dtr-details {
-    width: 100%;
+  td {
+    display: none;
+  }
+
+  td:nth-of-type(2) {
+    width: 75%;
+    display: table-cell;
+  }
+
+  td:nth-of-type(3) {
+    width: 25%;
+    display: table-cell;
   }
 }

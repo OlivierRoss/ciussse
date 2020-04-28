@@ -7,6 +7,9 @@ window.onload = async function () {
 
   if (response.ok) { // if HTTP-status is 200-299
     ajouter_donnees_DOM(await response.json());
+
+    // Afficher les informations cachees en mode mobile
+    $("tbody tr").click(() => { })
   } else {
     alert("HTTP-Error: " + response.status);
   }
@@ -15,7 +18,6 @@ window.onload = async function () {
 function ajouter_donnees_DOM (json) {
   let colonnes = json.values.slice(0, 1)[0].map((col) => { return {title: col} }).slice(0, 5);
   let organismes = json.values.slice(1);
-  console.log(colonnes);
 
   // Ajustement des types de donnees
   _.each(organismes, (organisme) => {
