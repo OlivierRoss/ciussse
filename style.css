@@ -83,6 +83,10 @@ table {
   display: none;
 }
 
+thead td {
+  font-weight: bold;
+}
+
 td:first-of-type {
   display: none;
 }
