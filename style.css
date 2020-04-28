@@ -87,6 +87,10 @@ thead td {
   font-weight: bold;
 }
 
+thead tr {
+  border-bottom: 2px solid black;
+}
+
 td:first-of-type {
   display: none;
 }
