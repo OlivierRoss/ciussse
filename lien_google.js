@@ -27,8 +27,20 @@ function ajouter_donnees_DOM (json) {
   // Regroupement des donnees
   let categories = _.groupBy(organismes, (organisme) => { return organisme[0]; });
 
+  // Passe passe pour trier
+  categories = _.map(categories, (value, key) => { 
+    let cat = {};
+    cat[key] = value;
+    return cat;
+  })
+  categories = _.orderBy(categories, (value) => { return Object.keys(value)[0]; }); 
+
   // Pour chaque section
-  _.each(categories, (categorie, key) => {
+  _.each(categories, (categorie) => {
+
+    // Passe passe pour trier
+    let key = Object.keys(categorie)[0];
+    categorie = categorie[key];
 
     // Creer table
     let table = document.createElement("table");
