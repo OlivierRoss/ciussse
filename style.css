@@ -56,6 +56,17 @@ header h3 {
   font-size: 1.5em;
 }
 
+#search-container {
+  display: flex;
+  justify-content: right;
+  padding: 20px 5%;
+}
+
+#search {
+  font-size: 1.2em;
+  width: 30%;
+}
+
 .section-texte {
   background-color: #94618E;
   color: white;

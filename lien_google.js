@@ -126,5 +126,31 @@ function ajouter_donnees_DOM (json) {
 }
 
 function afficher_categorie (ev) {
-  $(ev.target).next().toggle();
+  $(ev.target).next("table").toggle();
+}
+
+function search (ev) {
+  let recherche = ev.target.value;
+  if(recherche) {
+    
+    $("h3, table").show();
+    $("tr").hide();
+
+    let matchs = $("tbody tr").filter((index, el) => {
+      return el.innerHTML.match(recherche);
+    });
+    $(matchs).show();
+
+    let tables_visibles = $("table").has("tbody tr:visible");
+
+    let tables_invisibles = $("table").filter(function () {
+      return !$(this).has("tbody tr:visible").length;
+    });
+
+    $(tables_invisibles).prev("h3").hide();
+  }
+  else {
+    $("table").hide();
+    $("tr").show();
+  }
 }
