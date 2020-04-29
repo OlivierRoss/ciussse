@@ -20,9 +20,7 @@ function ajouter_donnees_DOM (json) {
 
   // Ajustement des types de donnees
   _.each(organismes, (organisme) => {
-    while(organisme.length < colonnes.length) {
-      organisme.push("");
-    }
+    while(organisme.length < json.values[0].length) { organisme.push(""); }
   });
 
   // Regroupement des donnees
@@ -45,7 +43,6 @@ function ajouter_donnees_DOM (json) {
 
     // Creer table
     let table = document.createElement("table");
-    //table.id = 'table' + key;
 
     // Creer entete
     let entete = document.createElement("h3");
@@ -65,6 +62,7 @@ function ajouter_donnees_DOM (json) {
     // Creer corps de la table
     let tbody = document.createElement("tbody");
     _.each(categorie, (organisme) => {
+      //console.log(organisme);
       let tr = document.createElement("tr");
       _.each(organisme, (val) => {
 
