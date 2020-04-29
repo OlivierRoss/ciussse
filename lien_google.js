@@ -73,6 +73,8 @@ function ajouter_donnees_DOM (json) {
         if(courriel = val.match(email_regexp)) {
           let a = document.createElement("a");
           a.href = "mailto:" + courriel;
+          a.target = "_blank";
+          a.rel = "noopener noreferrer";
           a.innerHTML = '<img class="icone" src="courriel.png" alt="courriel"/>';
           tr.childNodes[1].appendChild(a);
         }
@@ -80,6 +82,8 @@ function ajouter_donnees_DOM (json) {
         else if (tel = val.match(phone_regexp)) {
           let a = document.createElement("a");
           a.href = "tel:" + tel;
+          a.target = "_blank";
+          a.rel = "noopener noreferrer";
           a.innerHTML = '<img class="icone" src="tel.png" alt="telephone"/>';
           tr.childNodes[1].appendChild(a);
         }
@@ -87,6 +91,8 @@ function ajouter_donnees_DOM (json) {
         else if (site = val.match(url_regexp)) {
           let a = document.createElement("a");
           a.href = site;
+          a.target = "_blank";
+          a.rel = "noopener noreferrer";
           if(val.match(/facebook/i)) {
             a.innerHTML = '<img class="icone" src="fb.png" alt="facebook"/>';
           }
