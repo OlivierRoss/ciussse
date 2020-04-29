@@ -187,4 +187,8 @@ footer {
     width: 25%;
     display: table-cell;
   }
+
+  #search {
+    width: 100%;
+  }
 }
