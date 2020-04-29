@@ -85,6 +85,7 @@ table {
 
 thead td {
   font-weight: bold;
+  color: #f26754;
 }
 
 thead tr {
@@ -121,12 +122,16 @@ td {
 }
 
 .icone {
-  width: 35px;
+  width: 25px;
   margin-top: 5px;
 }
 
 tr a {
-  display: inherit;
+  display: block;
+  font-weight: initial;
+  text-transform: lowercase;
+  font-size: 0.95em;
+  word-break: break-all;
 }
 
 footer {

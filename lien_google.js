@@ -1,5 +1,6 @@
 let email_regexp = /(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/;
 let phone_regexp = /(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}/
+phone_regexp = /(?:(?:\+?1\s*(?:[.-]\s*)?)?(?:\(\s*([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9])\s*\)|([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9]))\s*(?:[.-]\s*)?)?([2-9]1[02-9]|[2-9][02-9]1|[2-9][02-9]{2})\s*(?:[.-]\s*)?([0-9]{4})(?:\s*(?:#|x\.?|ext\.?|extension)\s*(\d+))?/
 let url_regexp = /(?:^|[^@\.\w-])([a-z0-9]+:\/\/)?(\w(?!ailto:)\w+:\w+@)?([\w.-]+\.[a-z]{2,4})(:[0-9]+)?(\/.*)?(?=$|[^@\.\w-])/i;
 
 window.onload = async function () {
@@ -75,7 +76,7 @@ function ajouter_donnees_DOM (json) {
           a.href = "mailto:" + courriel;
           a.target = "_blank";
           a.rel = "noopener noreferrer";
-          a.innerHTML = '<img class="icone" src="courriel.png" alt="courriel"/>';
+          a.innerHTML = '<img class="icone" src="courriel.png" alt="courriel"/>' + courriel;
           tr.childNodes[1].appendChild(a);
         }
         // Telephones
@@ -84,20 +85,20 @@ function ajouter_donnees_DOM (json) {
           a.href = "tel:" + tel;
           a.target = "_blank";
           a.rel = "noopener noreferrer";
-          a.innerHTML = '<img class="icone" src="tel.png" alt="telephone"/>';
+          a.innerHTML = '<img class="icone" src="tel.png" alt="telephone"/>' + tel;
           tr.childNodes[1].appendChild(a);
         }
         // Sites
         else if (site = val.match(url_regexp)) {
           let a = document.createElement("a");
-          a.href = site;
+          a.href = site[0];
           a.target = "_blank";
           a.rel = "noopener noreferrer";
           if(val.match(/facebook/i)) {
-            a.innerHTML = '<img class="icone" src="fb.png" alt="facebook"/>';
+            a.innerHTML = '<img class="icone" src="fb.png" alt="facebook"/>' + site[0];
           }
           else {
-            a.innerHTML = '<img class="icone" src="web.png" alt="site web"/>';
+            a.innerHTML = '<img class="icone" src="web.png" alt="site web"/>' + site[0];
           }
           tr.childNodes[1].appendChild(a);
         }
