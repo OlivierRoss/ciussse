@@ -82,10 +82,10 @@ function ajouter_donnees_DOM (json) {
         // Telephones
         else if (tel = val.match(phone_regexp)) {
           let a = document.createElement("a");
-          a.href = "tel:" + tel;
+          a.href = "tel:" + tel[0];
           a.target = "_blank";
           a.rel = "noopener noreferrer";
-          a.innerHTML = '<img class="icone" src="tel.png" alt="telephone"/>' + tel;
+          a.innerHTML = '<img class="icone" src="tel.png" alt="telephone"/>' + tel[0];
           tr.childNodes[1].appendChild(a);
         }
         // Sites
@@ -121,6 +121,5 @@ function ajouter_donnees_DOM (json) {
 }
 
 function afficher_categorie (ev) {
-  $("table").css("display", "none");
-  $(ev.target).next().css("display", "table");
+  $(ev.target).next().toggle();
 }
