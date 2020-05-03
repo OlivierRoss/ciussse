@@ -7,6 +7,13 @@ window.onload = async function () {
 
   if (response.ok) { // if HTTP-status is 200-299
     ajouter_donnees_DOM(await response.json());
+    $("tr").click(function (event) {
+      if($(window).width() <= 600) {
+        event.preventDefault();
+        console.log(this, event);
+        $(this).modal();
+      }
+    });
 
   } else {
     alert("HTTP-Error: " + response.status);
@@ -132,7 +139,7 @@ function afficher_categorie (ev) {
 function search (ev) {
   let recherche = ev.target.value;
   if(recherche) {
-    
+
     $("h3, table").show();
     $("tr").hide();
 
@@ -154,3 +161,4 @@ function search (ev) {
     $("tr").show();
   }
 }
+

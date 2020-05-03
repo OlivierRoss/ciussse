@@ -191,4 +191,12 @@ footer {
   #search {
     width: 100%;
   }
+
+  .modal td {
+    display: block;
+  }
+
+  .modal td:first-of-type {
+    display: none;
+  }
 }
