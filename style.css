@@ -144,6 +144,13 @@ tr a {
   padding-left: 2px;
 }
 
+tr .telephone {
+  display: flex;
+  align-items: center;
+
+  font-weight: initial;
+}
+
 footer {
   min-height: 10vh;
   padding: 3% 5%;

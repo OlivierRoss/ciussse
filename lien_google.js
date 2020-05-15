@@ -95,9 +95,10 @@ function ajouter_donnees_DOM (json) {
       }
 
       // Telephones
-      if(organisme.telephone) {
+      if(organisme.t_l_phones) {
         let span = document.createElement("span");
-        span.innerHTML = '<img class="icone" src="tel.png" alt="telephone"/>' + tel[0];
+        span.innerHTML = '<img class="icone" src="tel.png" alt="telephone"/>' + organisme.t_l_phones;
+        span.className = "telephone";
         info.appendChild(span);
       }
 
