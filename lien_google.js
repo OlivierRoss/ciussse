@@ -3,7 +3,7 @@ let phone_regexp = /(\+?\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}/
 let url_regexp = /(?:^|[^@\.\w-])([a-z0-9]+:\/\/)?(\w(?!ailto:)\w+:\w+@)?([\w.-]+\.[a-z]{2,4})(:[0-9]+)?(\/.*)?(?=$|[^@\.\w-])/i;
 
 window.onload = async function () {
-  let response = await fetch("https://sheets.googleapis.com/v4/spreadsheets/1inmEtfz_sZeA1bI6n2y581WnwOm44B-KTAxhacw2vJY/values/'IGNORER - Données publiques'!A:H?key=AIzaSyAl3TfynOtVS2PQRKyJPWxJShQdESCvsy4");
+  let response = await fetch("https://sheets.googleapis.com/v4/spreadsheets/1c2pjjmdqcpb8GeXSl_RhZ-vTVERVQcQzETUdbWOD9Ac/values/'IGNORER - Données publiques'!A:H?key=AIzaSyAl3TfynOtVS2PQRKyJPWxJShQdESCvsy4");
 
   if (response.ok) { // if HTTP-status is 200-299
     ajouter_donnees_DOM(await response.json());
@@ -14,23 +14,25 @@ window.onload = async function () {
         $(this).modal();
       }
     });
-
   } else {
     alert("HTTP-Error: " + response.status);
   }
 }
 
 function ajouter_donnees_DOM (json) {
-  let colonnes = json.values.slice(0, 1)[0].map((col) => { return {title: col} }).slice(0, 5);
+  let colonnes = json.values.slice(0, 1)[0].map((col) => { return {title: col} })//.slice(0, 5);
   let organismes = json.values.slice(1);
 
-  // Ajustement des types de donnees
-  _.each(organismes, (organisme) => {
-    while(organisme.length < json.values[0].length) { organisme.push(""); }
+  let donnees = organismes.map((organisme) => {
+    let obj = {};
+    _.each(colonnes, (colonne, index) => {
+      obj[to_id(colonne.title)] = organisme[index];
+    });
+    return obj;
   });
 
   // Regroupement des donnees
-  let categories = _.groupBy(organismes, (organisme) => { return organisme[0]; });
+  let categories = _.groupBy(donnees, (organisme) => { return organisme.secteur_d_activit_; });
 
   // Passe passe pour trier
   categories = _.map(categories, (value, key) => { 
@@ -59,6 +61,9 @@ function ajouter_donnees_DOM (json) {
     let tr = document.createElement("tr");
 
     _.each(colonnes, (val) => {
+      // Selection des colonnes a afficher
+      if(val.title.match(/secteur|adresse|courriel|téléphone/i)) return;
+
       let td = document.createElement("td");
       td.innerHTML = val.title;
       tr.appendChild(td);
@@ -69,58 +74,65 @@ function ajouter_donnees_DOM (json) {
     let tbody = document.createElement("tbody");
     _.each(categorie, (organisme) => {
 
+      // Ptit hack
+      categorie = Object.values(categorie)[0];
+
       let tr = document.createElement("tr");
-      _.each(organisme, (val) => {
 
-        let courriel, site, tel, fb;
-        let contenu = true;
+      // Première case
+      let info = document.createElement("td");
+      info.innerHTML = "<span>" + organisme.nom + "</span>";
 
-        // Courriels
-        if(courriel = val.match(email_regexp)) {
+      // Informations de contact
+      let courriel = organisme.courriel ? organisme.courriel.match(email_regexp) : null;
+      if(courriel) {
+        let a = document.createElement("a");
+        a.href = "mailto:" + courriel;
+        a.target = "_blank";
+        a.rel = "noopener noreferrer";
+        a.innerHTML = '<img class="icone" src="courriel.png" alt="courriel"/>' + courriel;
+        info.appendChild(a);
+      }
+
+      // Telephones
+      if(organisme.telephone) {
+        let span = document.createElement("span");
+        span.innerHTML = '<img class="icone" src="tel.png" alt="telephone"/>' + tel[0];
+        info.appendChild(span);
+      }
+
+      // Sites
+      /*let sites = organisme.adresse ? organisme.adresse.match(url_regexp) : null;
+      if (sites) {
           let a = document.createElement("a");
-          a.href = "mailto:" + courriel;
+          a.href = sites[0];
           a.target = "_blank";
           a.rel = "noopener noreferrer";
-          a.innerHTML = '<img class="icone" src="courriel.png" alt="courriel"/>' + courriel;
-          tr.childNodes[1].appendChild(a);
-          contenu = false;
-        }
-
-        // Telephones
-        if (tel = val.match(phone_regexp)) {
-
-          let a = document.createElement("a");
-          a.href = "tel:" + tel[0];
-          a.target = "_blank";
-          a.rel = "noopener noreferrer";
-          a.innerHTML = '<img class="icone" src="tel.png" alt="telephone"/>' + tel[0];
-          tr.childNodes[1].appendChild(a);
-          contenu = false;
-        }
-
-        // Sites
-        if (site = val.match(url_regexp)) {
-          let a = document.createElement("a");
-          a.href = site[0];
-          a.target = "_blank";
-          a.rel = "noopener noreferrer";
-          if(val.match(/facebook/i)) {
-            a.innerHTML = '<img class="icone" src="fb.png" alt="facebook"/>' + site[0];
+          if(site.match(/facebook/i)) {
+            a.innerHTML = '<img class="icone" src="fb.png" alt="facebook"/>' + sites[0];
           }
           else {
-            a.innerHTML = '<img class="icone" src="web.png" alt="site web"/>' + site[0];
+            a.innerHTML = '<img class="icone" src="web.png" alt="site web"/>' + sites[0];
           }
-          tr.childNodes[1].appendChild(a);
-          contenu = false;
-        }
+          info.appendChild(a);
+        }*/
+      tr.appendChild(info);
 
-        // Contenu
-        if(contenu) {
-          let td = document.createElement("td");
-          td.innerHTML = val;
-          tr.appendChild(td);
-        }
-      });
+      // Deuxieme case
+      let etat = document.createElement("td");
+      etat.innerHTML = organisme._tat;
+      tr.appendChild(etat);
+
+      // Troisieme case
+      let reduits = document.createElement("td");
+      reduits.innerHTML = organisme.services_r_duits;
+      tr.appendChild(reduits);
+
+      // Quatrieme case
+      let reguliers = document.createElement("td");
+      reguliers.innerHTML = organisme.services_r_guliers___mission;
+      tr.appendChild(reguliers);
+
       tbody.appendChild(tr);
     });
 
@@ -162,3 +174,6 @@ function search (ev) {
   }
 }
 
+function to_id (nom) {
+  return nom.toLowerCase().replace(/[^a-z0-9]/g,'_');
+}
