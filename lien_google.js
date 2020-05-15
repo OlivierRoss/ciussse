@@ -3,7 +3,7 @@ let phone_regexp = /(\+?\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}/
 let url_regexp = /(?:^|[^@\.\w-])([a-z0-9]+:\/\/)?(\w(?!ailto:)\w+:\w+@)?([\w.-]+\.[a-z]{2,4})(:[0-9]+)?(\/.*)?(?=$|[^@\.\w-])/i;
 
 window.onload = async function () {
-  let response = await fetch("https://sheets.googleapis.com/v4/spreadsheets/1c2pjjmdqcpb8GeXSl_RhZ-vTVERVQcQzETUdbWOD9Ac/values/'IGNORER - Données publiques'!A:H?key=AIzaSyAl3TfynOtVS2PQRKyJPWxJShQdESCvsy4");
+  let response = await fetch("https://sheets.googleapis.com/v4/spreadsheets/1c2pjjmdqcpb8GeXSl_RhZ-vTVERVQcQzETUdbWOD9Ac/values/'IGNORER - Données publiques'!A:J?key=AIzaSyAl3TfynOtVS2PQRKyJPWxJShQdESCvsy4");
 
   if (response.ok) { // if HTTP-status is 200-299
     ajouter_donnees_DOM(await response.json());
@@ -20,7 +20,7 @@ window.onload = async function () {
 }
 
 function ajouter_donnees_DOM (json) {
-  let colonnes = json.values.slice(0, 1)[0].map((col) => { return {title: col} })//.slice(0, 5);
+  let colonnes = json.values.slice(0, 1)[0].map((col) => { return {title: col} });
   let organismes = json.values.slice(1);
 
   let donnees = organismes.map((organisme) => {
@@ -102,21 +102,30 @@ function ajouter_donnees_DOM (json) {
         info.appendChild(span);
       }
 
-      // Sites
-      /*let sites = organisme.adresse ? organisme.adresse.match(url_regexp) : null;
-      if (sites) {
-          let a = document.createElement("a");
-          a.href = sites[0];
-          a.target = "_blank";
-          a.rel = "noopener noreferrer";
-          if(site.match(/facebook/i)) {
-            a.innerHTML = '<img class="icone" src="fb.png" alt="facebook"/>' + sites[0];
-          }
-          else {
-            a.innerHTML = '<img class="icone" src="web.png" alt="site web"/>' + sites[0];
-          }
-          info.appendChild(a);
-        }*/
+      // Facebook
+      let fb = organisme.facebook ? organisme.facebook.match(url_regexp) : null;
+      if (fb) {
+        fb = fb[0];
+        let a = document.createElement("a");
+        a.href = fb;
+        a.target = "_blank";
+        a.rel = "noopener noreferrer";
+        a.innerHTML = '<img class="icone" src="fb.png" alt="facebook"/>' + fb;
+        info.appendChild(a);
+      }
+
+      // Web
+      let site = organisme.site_web ? organisme.site_web.match(url_regexp) : null;
+      if (site) {
+        site = site[0];
+        let a = document.createElement("a");
+        a.href = site;
+        a.target = "_blank";
+        a.rel = "noopener noreferrer";
+        a.innerHTML = '<img class="icone" src="web.png" alt="site web"/>' + site;
+        info.appendChild(a);
+      }     
+
       tr.appendChild(info);
 
       // Deuxieme case
