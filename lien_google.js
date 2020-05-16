@@ -62,7 +62,7 @@ function ajouter_donnees_DOM (json) {
 
     _.each(colonnes, (val) => {
       // Selection des colonnes a afficher
-      if(val.title.match(/secteur|adresse|courriel|téléphone/i)) return;
+      if(val.title.match(/secteur|adresse|courriel|téléphone|web|facebook/i)) return;
 
       let td = document.createElement("td");
       td.innerHTML = val.title;
