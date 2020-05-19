@@ -83,6 +83,14 @@ function ajouter_donnees_DOM (json) {
       let info = document.createElement("td");
       info.innerHTML = "<span>" + organisme.nom + "</span>";
 
+      // Adresse
+      if(organisme.adresse) {
+        let span = document.createElement("span");
+        span.innerHTML = organisme.adresse;
+        span.className = "adresse";
+        info.appendChild(span);
+      }
+
       // Informations de contact
       let courriel = organisme.courriel ? organisme.courriel.match(email_regexp) : null;
       if(courriel) {

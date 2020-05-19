@@ -129,6 +129,7 @@ td {
 }
 
 .icone {
+  min-width: 25px;
   width: 25px;
   margin-top: 5px;
 }
@@ -148,6 +149,11 @@ tr .telephone {
   display: flex;
   align-items: center;
 
+  font-weight: initial;
+}
+
+tr .adresse {
+  display: block;
   font-weight: initial;
 }
 
