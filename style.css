@@ -112,7 +112,7 @@ td:nth-of-type(1) {
 }
 
 td:nth-of-type(2) {
-  width: 75px;
+  width: 125px;
 }
 
 tr {
@@ -191,12 +191,12 @@ footer {
   }
 
   td:nth-of-type(1) {
-    width: 75%;
+    width: 60%;
     display: table-cell;
   }
 
   td:nth-of-type(2) {
-    width: 25%;
+    width: 40%;
     display: table-cell;
   }
 

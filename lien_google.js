@@ -139,11 +139,13 @@ function ajouter_donnees_DOM (json) {
       // Deuxieme case
       let etat = document.createElement("td");
       etat.innerHTML = organisme._tat;
+      // TODO etat.innerHTML = organisme.locaux_accessibles_;
       tr.appendChild(etat);
 
       // Troisieme case
       let reduits = document.createElement("td");
       reduits.innerHTML = organisme.services_r_duits;
+      // TODO reduits.innerHTML = organisme.services_actuels;
       tr.appendChild(reduits);
 
       // Quatrieme case
